@@ -109,5 +109,7 @@ storage.init()
 smokesignal.emit('knownurlschanged')
 
 if __name__=='__main__':
-
-    app.run(port=8080, debug=True)
+    PORT=os.environ.get('PORT')
+    if PORT==None:
+        PORT=8080
+    app.run(port=PORT, debug=True)
