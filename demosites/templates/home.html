@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Demo Site Hosting Pictures</title>
+</head>
+
+<body>
+    <center>
+        <h2>Demo Site Hosting Pictures</h2>
+        <hr>
+        <h3>Index</h3>
+        {% for pageid in pageids %}
+        <a href="/post/{{pageid}}">Page {{pageid}}</a><br> {% endfor %}
+    </center>
+</body>
+
+<footer>
+    <center>
+        Images from the <a href="http://vis-www.cs.umass.edu/lfw/">Labeled Faces in the Wild</a> Dataset.
+    </center>
+</footer>
+
+</html>

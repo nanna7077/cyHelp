@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Demo Site Hosting Pictures | Page {{pageid}}</title>
+</head>
+
+<body>
+    <center>
+        <h2>Demo Site Hosting Pictures | Page {{pageid}}</h2>
+        <hr>
+        <h3>Images</h3>
+        <br>
+        <hr><br> {% for picture in pictures %}
+        <img src="/static/images/{{picture}}"><br> {% endfor %}
+        <br><br>
+        <a href="/">Return to home</a>
+        <br><br>
+        <hr>
+        <h3>Other Pages</h3>
+        {% for pid in allpages %} {% if pageid!=pid %}
+        <a href="/post/{{pageid}}">Page {{pid}}</a> {% endif %} {% endfor %}
+    </center>
+</body>
+
+<footer>
+    <center>
+        Images from the <a href="http://vis-www.cs.umass.edu/lfw/">Labeled Faces in the Wild</a> Dataset.
+    </center>
+</footer>
+
+</html>
