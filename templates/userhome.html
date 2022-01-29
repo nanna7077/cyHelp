@@ -1,0 +1,141 @@
+<!-- <html>
+
+<body>
+    Hello, {{username}}<br> {{currentsearches}} {% for search in currentsearches %} {% if "FOUNDAT" in search[3] %} Image's found at {% for i in search[3].split("||")[1:] %} <a href='{{i}}'>{{i}}</a> {% endfor %}<br><a href="/helpRegisterComplaint/{{search[0]}}">Click here</a>    to learn how to create a report to takedown the image. {% endif %}{% endfor %}
+
+    <form method="post" action="/search/new/imageknown" enctype=multipart/form-data>
+        Select the leaked image from your device <input type="file" name="images" multiple><br>
+        <input type="submit">
+    </form>
+
+    <form method="post" action="/search/new/imageunknown" enctype=multipart/form-data>
+        Select images with your face visible <input type="file" name="images" multiple><br>
+        <input type="submit">
+    </form>
+
+    {% if error!=None %} {{error}} {%endif%}
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | CyHelp</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+    .container {
+        width: 100%;
+        text-align: center;
+        margin-top: 1vh;
+        margin-bottom: 2vh;
+    }
+    
+    .title {
+        font-size: 2.6rem;
+        font-weight: bold;
+    }
+    
+    .search {
+        border: 1px solid #000;
+        border-radius: 5px;
+        width: fit-content;
+        padding: 1% 1% 1% 1%;
+        text-align: left;
+    }
+    
+    .search-found {
+        background: rgba(255, 0, 0, 0.4);
+        color: black;
+    }
+    
+    .search-inprogress {
+        background: rgba(0, 255, 0, .4);
+    }
+    
+    .searchStartedOn {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    
+    .searchStatus {
+        font-size: .9rem;
+    }
+    
+    .subhead {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+    }
+    
+    .niceflexbox {
+        width: 100vh;
+        font-size: 1.4rem;
+        padding: 1% 1% 1% 1%;
+        margin-left: 1vh;
+        margin-top: 5vh;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="title">CyHelp</div>
+        <div class="title" style="font-size: 1.3rem; margin-top: 1vh; margin-bottom: 1vh;"> Hello, {{username}}</div>
+    </div>
+    {% if currentsearches!=[] %} {% for search in currentsearches %}
+    <div class="container">
+        <div class="subhead">Previous Searches</div>
+        <center>
+            {% if "FOUNDAT" in search[4] %}
+            <div class="search search-found">
+                <div class="searchStartedOn">Started On: {{search[1]}}</div>
+                <div class="searchStatus">Image's found at {% for i in search[4].split("||")[1:] %} <a href='{{i}}'>{{i}}</a> {% endfor %}<br><a href="/helpRegisterComplaint/{{search[0]}}">Click here</a> to learn how to create a report to takedown the image.</div>
+            </div>
+            {% else %}
+            <div class="search search-inprogress">
+                <div class="searchStartedOn">Started On: {{search[1]}}</div>
+                <div class="searchStatus">Searching...</div>
+            </div>
+            {% endif %} {% endfor %} {{search}}
+        </center>
+    </div>
+    {% endif %}
+    <div class="container" style="margin-top: 4vh;">
+        <div class="subhead">Create new search</div>
+        <div class="container" style="display: flex;">
+            <div class="niceflexbox">
+                Have the misused image?
+                <div class="container" style="font-size: 1.1rem;">
+                    <form method="post" action="/search/new/imageknown" enctype=multipart/form-data>
+                        Select the leaked image from your device
+                        <br><br><input type="file" name="images" multiple><br><br>
+                        <input type="submit" value="Start Search">
+                    </form>
+                </div>
+            </div>
+            <div class="niceflexbox">
+                Create search from other images
+                <div class="container" style="font-size: 1.1rem;">
+                    <form method="post" action="/search/new/imageunknown" enctype=multipart/form-data>
+                        Select images with your face visible
+                        <br><br><input type="file" name="images" multiple><br><br>
+                        <input type="submit" value="Start Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
