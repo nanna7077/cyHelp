@@ -1,23 +1,3 @@
-<!-- <html>
-
-<body>
-    Hello, {{username}}<br> {{currentsearches}} {% for search in currentsearches %} {% if "FOUNDAT" in search[3] %} Image's found at {% for i in search[3].split("||")[1:] %} <a href='{{i}}'>{{i}}</a> {% endfor %}<br><a href="/helpRegisterComplaint/{{search[0]}}">Click here</a>    to learn how to create a report to takedown the image. {% endif %}{% endfor %}
-
-    <form method="post" action="/search/new/imageknown" enctype=multipart/form-data>
-        Select the leaked image from your device <input type="file" name="images" multiple><br>
-        <input type="submit">
-    </form>
-
-    <form method="post" action="/search/new/imageunknown" enctype=multipart/form-data>
-        Select images with your face visible <input type="file" name="images" multiple><br>
-        <input type="submit">
-    </form>
-
-    {% if error!=None %} {{error}} {%endif%}
-</body>
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,6 +27,8 @@
     }
     
     .search {
+        display: inline-block;
+        margin-left: 10px;
         border: 1px solid #000;
         border-radius: 5px;
         width: fit-content;
@@ -93,11 +75,11 @@
         <div class="title">CyHelp</div>
         <div class="title" style="font-size: 1.3rem; margin-top: 1vh; margin-bottom: 1vh;"> Hello, {{username}}</div>
     </div>
-    {% if currentsearches!=[] %} {% for search in currentsearches %}
+    {% if currentsearches!=[] %}
     <div class="container">
         <div class="subhead">Previous Searches</div>
         <center>
-            {% if "FOUNDAT" in search[4] %}
+            {% for search in currentsearches %} {% if "FOUNDAT" in search[4] %}
             <div class="search search-found">
                 <div class="searchStartedOn">Started On: {{search[1]}}</div>
                 <div class="searchStatus">Image's found at {% for i in search[4].split("||")[1:] %} <a href='{{i}}'>{{i}}</a> {% endfor %}<br><a href="/helpRegisterComplaint/{{search[0]}}">Click here</a> to learn how to create a report to takedown the image.</div>
